@@ -26,3 +26,35 @@ def salvar_livros(livros):
 
 def cadastrar_livro(livros):
     print("\n--- CADASTRAR LIVRO ---")
+     titulo = input("Digite o título: ")
+    autor = input("Digite o autor: ")
+    ano = input("Digite o ano de publicação: ")
+    isbn = input("Digite o ISBN: ")
+
+    for livro in livros:
+        if livro["isbn"] == isbn:
+            print("Esse ISBN já está cadastrado.")
+            return livros
+
+    livro = {
+        "titulo": titulo,
+        "autor": autor,
+        "ano": ano,
+        "isbn": isbn,
+        "status": "disponível"
+    }
+
+    livros.append(livro)
+    salvar_livros(livros)
+
+    print("Livro cadastrado com sucesso!")
+
+    return livros
+
+
+def procurar_livro(livros, isbn):
+    for livro in livros:
+        if livro["isbn"] == isbn:
+            return livro
+
+        
