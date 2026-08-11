@@ -56,5 +56,50 @@ def procurar_livro(livros, isbn):
     for livro in livros:
         if livro["isbn"] == isbn:
             return livro
+         return None
+
+
+def emprestar_livro(livros):
+    print("\n--- EMPRESTAR LIVRO ---")
+
+    isbn = input("Digite o ISBN do livro: ")
+
+    livro = procurar_livro(livros, isbn)
+
+    if livro is None:
+        print("Livro não encontrado.")
+        return livros
+
+    if livro["status"] == "emprestado":
+        print("Esse livro já está emprestado.")
+        return livros
+
+    livro["status"] = "emprestado"
+    salvar_livros(livros)
+
+    print("Livro emprestado com sucesso!")
+
+    return livros
+
+
+def devolver_livro(livros):
+    print("\n--- DEVOLVER LIVRO ---")
+
+    isbn = input("Digite o ISBN do livro: ")
+
+    livro = procurar_livro(livros, isbn)
+
+    if livro is None:
+        print("Livro não encontrado.")
+        return livros
+
+    if livro["status"] == "disponível":
+        print("Esse livro já está disponível.")
+        return livros
+
+    livro["status"] = "disponível"
+    salvar_livros(livros)
+
+    print("Livro devolvido com sucesso!")
 
         
